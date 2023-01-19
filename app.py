@@ -9,7 +9,9 @@ response = ''
 app = Flask(__name__)
 
 data = pd.read_csv('rating_final.csv')
-
+import sys
+print("Python version")
+print (sys.version)
 # How many times has a user rated
 most_rated_users = data['userID'].value_counts()
 most_rated_users
