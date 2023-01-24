@@ -119,14 +119,15 @@ def rate():  # put application's code here
         return jsonify({'recommeneded': Recommended})
         # return temp.head(num_recommendations)
 
-@app.route('/recommendation', methods=['GET', 'POST'])
+@app.route('/recommendation', methods=['GET'])
 def recommend():  # put application's code here
     global response
-    if(request.method == 'POST'):
+    if(request.method == 'GET'):
         # value from flutter
-        request_data = request.data
-        request_data = json.loads(request_data.decode('utf-8'))
-        uid = request_data['usrID']
+        print(response.headers.get('usrID'))
+#         request_data = request.data
+#         request_data = json.loads(request_data.decode('utf-8'))
+        uid = response.headers.get('usrID')
         # table with index 
         UserIDs = pd.DataFrame(data=data_final['userID'].drop_duplicates())
         UserIDs['user_index'] = np.arange(0, pivot_data.shape[0],1)
